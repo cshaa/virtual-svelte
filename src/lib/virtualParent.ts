@@ -4,6 +4,7 @@ import { curryComponent, type Props } from './utils';
 import VirtualRoot from './VirtualRoot.svelte';
 
 import type { Component, ComponentConstructor } from './utils';
+import VirtualChild from './VirtualChild.svelte';
 
 let currentUid = 0;
 
@@ -17,6 +18,7 @@ class VirtualParent<C = any> {
     childDestroyed = (id: number) => console.log(id);
 
 	Root = curryComponent(VirtualRoot, { el: this.root });
+    Child = curryComponent(VirtualChild, { X: this });
 }
 
 export type { VirtualParent };
