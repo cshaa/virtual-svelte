@@ -1,17 +1,15 @@
 <script lang="ts" context="module">
-	import { onMount, onDestroy } from 'svelte';
 	import { portal } from 'svelte-portal';
-	import type { VirtualParent } from './virtualParent';
+	import type { Writable } from 'svelte/store';
 </script>
 
 <script lang="ts">
-	export let X: VirtualParent;
     export let parent: HTMLElement | string = "body";
-    let el: HTMLElement;
+    export let el: Writable<HTMLElement>;
 </script>
 
 <div
-    bind:this={el}
+    bind:this={$el}
 	use:portal={parent}
 	style:display="none !important"
 	class:virtual-svelte={true}
